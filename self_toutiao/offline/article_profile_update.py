@@ -10,6 +10,7 @@ from datetime import timedelta
 import pyspark.sql.functions as F
 import pyspark
 import gc
+from offline import logger
 
 class UpdateArticle(SparkSessionBases):
     SPARK_APP_NAME = 'updateArticle'
@@ -128,6 +129,7 @@ class UpdateArticle(SparkSessionBases):
         return articleProfile
 
 if __name__ == '__main__':
+    t = logger.Logger('TEST').get_log().debug('user root debug test')
     ua = UpdateArticle()
     sentence_df = ua.merge_article_data()
     if sentence_df.rdd.collect():
